@@ -34,3 +34,25 @@ def stations_within_radius(stations, centre, r):
     within_radius = sorted(within_radius)
 
     print(within_radius)
+
+
+def rivers_with_station(stations):
+    """Creates a list of rivers which have at least one station, with no duplicates"""
+    rivers_list = []
+    for station in stations:
+        if station.name == None:
+            pass
+        else:
+            rivers_list.append(station.river)
+    return set(rivers_list) # Removes any duplicates
+
+
+def stations_by_river(stations):
+    """Creates a dictionary which uses rivers as keys and maps them to their station(s)"""
+    river_set = rivers_with_station(stations) # Get rivers with stations from previous function
+    river_dict = {} # Create an empty dictionary
+    for river in river_set:
+        river_dict[river] = [] # Add an empty list to every key
+    for station in stations:
+        river_dict[station.river].append(station.name) # Append new elements to lists with appropriate key
+    return river_dict
