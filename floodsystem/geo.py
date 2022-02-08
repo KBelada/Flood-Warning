@@ -9,8 +9,6 @@ geographical data.
 from ensurepip import version
 from os import stat
 from .utils import sorted_by_key  # noqa
-
-from floodsystem.stationdata import build_station_list
 from haversine import haversine, Unit
 
 def stations_by_distance(stations, p):
@@ -23,7 +21,7 @@ def stations_by_distance(stations, p):
 
 
 def stations_within_radius(stations, centre, r):
-    #Function that returns the names of the monitoring stations within a given radius of a coordinate
+    #Function that returns the names of the monitoring stations within a given radius of a coordinate, sorted alphabetically.
 
     within_radius = []
 
@@ -56,3 +54,23 @@ def stations_by_river(stations):
     for station in stations:
         river_dict[station.river].append(station.name) # Append new elements to lists with appropriate key
     return river_dict
+
+  
+def rivers_by_station_number(stations, N):
+    #Function that returns the N rivers with the greatest number of stations, sorted by number of stations.
+    
+    station_number = [('River Cam', 0)]   #Random river to start for loop
+
+    for station in stations:
+        for i in range(len(station_number)):
+            if station.river == station_number[i][0]:
+                station_number[i][1] += 1
+
+            else:
+                station_number.append((station.river, 1))
+            
+    station_number = sorted_by_key(station_number, 1)
+
+    n = N - 1
+    return station_number[n:]
+
