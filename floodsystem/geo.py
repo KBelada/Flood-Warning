@@ -65,7 +65,7 @@ def rivers_by_station_number(stations, N):
     river_station_number = sorted_by_key(river_station_number, 1) #Sorts the list in ascending order of number of stations
     river_station_number.reverse() #Reverses it so it's in descending order
     top_N = river_station_number[:N] #Takes top N elements
-    while river_station_number[N+1][1] == river_station_number[N][1]: #If the adjacent element is equal 
-        top_N.append(river_station_number[N+1]) #Takes the adjacent element as well
+    while river_station_number[N][1] == river_station_number[N-1][1]: #If the adjacent element is equal
+        top_N.append(river_station_number[N]) #Takes the adjacent element as well
         N = N+1
     return top_N
