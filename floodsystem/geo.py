@@ -23,7 +23,7 @@ def stations_by_distance(stations, p):
 
 
 def stations_within_radius(stations, centre, r):
-    #Function that returns the names of the monitoring stations within a given radius of a coordinate
+    #Function that returns the names of the monitoring stations within a given radius of a coordinate, sorted alphabetically.
 
     within_radius = []
 
@@ -56,3 +56,18 @@ def stations_by_river(stations):
     for station in stations:
         river_dict[station.river].append(station.name) # Append new elements to lists with appropriate key
     return river_dict
+
+
+def rivers_by_station_number(stations, N):
+    #Function that returns the N rivers with the greatest number of stations, sorted by number of stations.
+    river_dict = stations_by_river(stations)
+    river_station_number = []
+    for river in river_dict:
+        river_station_number.append((river, len(river_dict[river]))) #Creates a list of river-number of stations on the river tuple pairs
+    river_station_number = sorted_by_key(river_station_number, 1) #Sorts the list in ascending order of number of stations
+    river_station_number.reverse() #Reverses it so it's in descending order
+    top_N = river_station_number[:N] #Takes top N elements
+    while river_station_number[N+1][1] == river_station_number[N][1]: #If the adjacent element is equal 
+        top_N.append(river_station_number[N+1]) #Takes the adjacent element as well
+        N = N+1
+    return top_N
