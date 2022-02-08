@@ -9,8 +9,6 @@ geographical data.
 from ensurepip import version
 from os import stat
 from .utils import sorted_by_key  # noqa
-
-from floodsystem.stationdata import build_station_list
 from haversine import haversine, Unit
 
 def stations_by_distance(stations, p):
