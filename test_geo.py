@@ -1,5 +1,5 @@
 from floodsystem.station import MonitoringStation
-from floodsystem.geo import stations_by_distance
+from floodsystem.geo import stations_by_distance, stations_within_radius
 from floodsystem.geo import rivers_with_station
 from floodsystem.geo import stations_by_river
 from floodsystem.geo import  rivers_by_station_number
@@ -76,3 +76,28 @@ def test_rivers_by_station_number():
     assert top_2_test[2] == ("river2", 2)
     top_3_test = rivers_by_station_number(s_list, 3)
     assert top_3_test == top_2_test
+
+
+def test_stations_within_radius():
+
+    s_id = "test-s-id"
+    m_id = "test-m-id"
+    label = "some station"
+    coord = (52.197227, 0.087527)
+    trange = (-2.3, 3.4445)
+    river = "River X"
+    town = "My Town"
+    s = MonitoringStation(s_id, m_id, label, coord, trange, river, town)
+
+    b_id = "test-b-id"
+    m_id = "test-mb-id"
+    label = "that station"
+    coord = (-2.0, 5.0)
+    trange = (2.3, 3.4445)
+    river = "River B"
+    town = "Your Town"
+    b = MonitoringStation(b_id, m_id, label, coord, trange, river, town)
+
+    c = [s, b]
+
+    assert stations_within_radius(c, (52.2053, 0.1218), 10) == ["some station"]
