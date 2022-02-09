@@ -41,13 +41,13 @@ def test_stations_by_distance():
     assert len(sorted_s_by_dis) == 3
     for i in range(3):
         assert len(sorted_s_by_dis[i]) == 3
-    assert sorted_s_by_dis[0][0] == "s_id2" #3.6
+    assert sorted_s_by_dis[0][0] == "label2" #3.6
     assert sorted_s_by_dis[0][1] == "town2"
     assert round(sorted_s_by_dis[0][2], 1) == 3.6
-    assert sorted_s_by_dis[1][0] == "s_id1" #5
+    assert sorted_s_by_dis[1][0] == "label1" #5
     assert sorted_s_by_dis[1][1] == "town1"
     assert round(sorted_s_by_dis[1][2], 1) == 5.0
-    assert sorted_s_by_dis[2][0] == "s_id3" #6.4
+    assert sorted_s_by_dis[2][0] == "label3" #6.4
     assert sorted_s_by_dis[2][1] == "town3"
     assert round(sorted_s_by_dis[2][2], 1) == 6.4
 
@@ -141,10 +141,10 @@ def test_stations_by_river():
     rivers_dict_test = stations_by_river(s_list)
     assert len(rivers_dict_test) == 2
     assert len(rivers_dict_test["river1"]) == 1
-    assert rivers_dict_test["river1"][0] == "s_id1"
+    assert rivers_dict_test["river1"][0] == "label1"
     assert len(rivers_dict_test["river3"]) == 2
-    assert "s_id3" in rivers_dict_test["river3"]
-    assert "s_id4" in rivers_dict_test["river3"]
+    assert "label3" in rivers_dict_test["river3"]
+    assert "label4" in rivers_dict_test["river3"]
 
 
 def test_rivers_by_station_number():
