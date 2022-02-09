@@ -29,9 +29,7 @@ def stations_within_radius(stations, centre, r):
         if haversine(station.coord, centre) < r:
             within_radius.append(station.name)
     
-    within_radius = sorted(within_radius)
-
-    print(within_radius)
+    return sorted(within_radius)
 
 
 def rivers_with_station(stations):
