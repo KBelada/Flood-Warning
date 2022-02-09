@@ -29,9 +29,7 @@ def stations_within_radius(stations, centre, r):
         if haversine(station.coord, centre) < r:
             within_radius.append(station.name)
     
-    within_radius = sorted(within_radius)
-
-    print(within_radius)
+    return sorted(within_radius)
 
 
 def rivers_with_station(stations):
@@ -62,8 +60,7 @@ def rivers_by_station_number(stations, N):
     river_station_number = []
     for river in river_dict:
         river_station_number.append((river, len(river_dict[river]))) #Creates a list of river-number of stations on the river tuple pairs
-    river_station_number = sorted_by_key(river_station_number, 1) #Sorts the list in ascending order of number of stations
-    river_station_number.reverse() #Reverses it so it's in descending order
+    river_station_number = sorted_by_key(river_station_number, 1, True) #Sorts the list in ascending order of number of stations
     top_N = river_station_number[:N] #Takes top N elements
     while river_station_number[N][1] == river_station_number[N-1][1]: #If the adjacent element is equal
         top_N.append(river_station_number[N]) #Takes the adjacent element as well
