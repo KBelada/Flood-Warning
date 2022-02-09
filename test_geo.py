@@ -95,7 +95,7 @@ def test_rivers_with_stations():
 
     rivers_test = rivers_with_station(s_list)
     assert len(rivers_test) == 3
-    assert rivers_test == {"river1", "river3"}
+    assert rivers_test == {"river1", "river2", "river3"}
 
 
 def test_stations_by_river():
