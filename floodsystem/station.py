@@ -6,6 +6,7 @@ for manipulating/modifying station data
 
 """
 
+from types import NoneType
 
 class MonitoringStation:
     """This class represents a river level monitoring station"""
@@ -38,3 +39,24 @@ class MonitoringStation:
         d += "   river:         {}\n".format(self.river)
         d += "   typical range: {}".format(self.typical_range)
         return d
+
+    def typical_range_stations(self):
+        if isinstance(self.typical_range, NoneType):
+            return False
+        elif self.typical_range[0] > self.typical_range[1]:
+            return False
+        else:
+            return True
+
+
+def inconsistent_typical_range_stations(stations):
+    #Checks a list of MonitoringStation stations for any with inconsistent typical range data and returns these in a new list, sorted alphabetically
+
+    inconsistent_stations = []
+
+    for station in stations:
+        if MonitoringStation.typical_range_stations(station) == False:
+            inconsistent_stations.append(station.name)
+    
+    return sorted(inconsistent_stations)
+
