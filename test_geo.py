@@ -94,7 +94,7 @@ def test_rivers_with_stations():
     s_list = [s1, s2, s3, s4]
 
     rivers_test = rivers_with_station(s_list)
-    assert len(rivers_test) == 2
+    assert len(rivers_test) == 3
     assert rivers_test[0] == "river1"
     assert rivers_test[1] == "river3"
 
@@ -140,7 +140,7 @@ def test_stations_by_river():
     s_list = [s1, s2, s3, s4]
 
     rivers_dict_test = stations_by_river(s_list)
-    assert len(rivers_dict_test) == 2
+    assert len(rivers_dict_test) == 3
     assert len(rivers_dict_test["river1"]) == 1
     assert rivers_dict_test["river1"][0] == "label1"
     assert len(rivers_dict_test["river3"]) == 2
