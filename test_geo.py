@@ -3,6 +3,7 @@ from floodsystem.geo import stations_by_distance, stations_within_radius
 from floodsystem.geo import rivers_with_station
 from floodsystem.geo import stations_by_river
 from floodsystem.geo import  rivers_by_station_number
+from haversine import haversine, Unit
 
 """Unit test for the geo module"""
 
@@ -43,13 +44,13 @@ def test_stations_by_distance():
         assert len(sorted_s_by_dis[i]) == 3
     assert sorted_s_by_dis[0][0] == "label2" #3.6
     assert sorted_s_by_dis[0][1] == "town2"
-    assert round(sorted_s_by_dis[0][2], 1) == 3.6
+    assert round(sorted_s_by_dis[0][2], 1) == 400.9
     assert sorted_s_by_dis[1][0] == "label1" #5
     assert sorted_s_by_dis[1][1] == "town1"
-    assert round(sorted_s_by_dis[1][2], 1) == 5.0
+    assert round(sorted_s_by_dis[1][2], 1) == 555.9
     assert sorted_s_by_dis[2][0] == "label3" #6.4
     assert sorted_s_by_dis[2][1] == "town3"
-    assert round(sorted_s_by_dis[2][2], 1) == 6.4
+    assert round(sorted_s_by_dis[2][2], 1) == 711.9
 
 
 def test_rivers_with_stations():
