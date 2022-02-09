@@ -6,7 +6,6 @@ for manipulating/modifying station data
 
 """
 
-from types import NoneType
 
 class MonitoringStation:
     """This class represents a river level monitoring station"""
@@ -41,7 +40,7 @@ class MonitoringStation:
         return d
 
     def typical_range_stations(self):
-        if isinstance(self.typical_range, NoneType):
+        if self.typical_range == None:
             return False
         elif self.typical_range[0] > self.typical_range[1]:
             return False
