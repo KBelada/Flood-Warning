@@ -55,22 +55,17 @@ def stations_by_river(stations):
         river_dict[station.river].append(station.name) # Append new elements to lists with appropriate key
     return river_dict
 
-  
+
 def rivers_by_station_number(stations, N):
     #Function that returns the N rivers with the greatest number of stations, sorted by number of stations.
-    
-    station_number = [('River Cam', 0)]   #Random river to start for loop
-
-    for station in stations:
-        for i in range(len(station_number)):
-            if station.river == station_number[i][0]:
-                station_number[i][1] += 1
-
-            else:
-                station_number.append((station.river, 1))
-            
-    station_number = sorted_by_key(station_number, 1)
-
-    n = N - 1
-    return station_number[n:]
-
+    river_dict = stations_by_river(stations)
+    river_station_number = []
+    for river in river_dict:
+        river_station_number.append((river, len(river_dict[river]))) #Creates a list of river-number of stations on the river tuple pairs
+    river_station_number = sorted_by_key(river_station_number, 1) #Sorts the list in ascending order of number of stations
+    river_station_number.reverse() #Reverses it so it's in descending order
+    top_N = river_station_number[:N] #Takes top N elements
+    while river_station_number[N][1] == river_station_number[N-1][1]: #If the adjacent element is equal
+        top_N.append(river_station_number[N]) #Takes the adjacent element as well
+        N = N+1
+    return top_N
