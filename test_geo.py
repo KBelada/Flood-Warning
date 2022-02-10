@@ -159,7 +159,7 @@ def test_rivers_by_station_number():
     town1 = "town1"
     s1 = MonitoringStation(s_id1, m_id1, label1, coord1, trange1, river1, town1)
 
-    s_id2 = None
+    s_id2 = "s_id2"
     m_id2 = "test-m-id2"
     label2 = "label2"
     coord2 = (-1.0, 3.0)
