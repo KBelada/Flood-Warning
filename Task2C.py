@@ -1,5 +1,5 @@
 from floodsystem.stationdata import build_station_list, update_water_levels
-from floodsystem.flood import stations_level_over_threshold
+from floodsystem.flood import stations_highest_rel_level
 
 def run():
     # Build list of stations
@@ -8,11 +8,12 @@ def run():
     # Update latest level data for all stations
     update_water_levels(stations)
 
-    over_threshold = stations_level_over_threshold(stations, 0.8)
+    highest_risk = stations_highest_rel_level(stations, 10)
     
-    for i in over_threshold:
-        print(i[0].name, i[1])
+    for i in highest_risk:
+        print(i.name, i.relative_water_level())
+
 
 if __name__ == "__main__":
-    print("*** Task 2B: CUED Part IA Flood Warning System ***")
+    print("*** Task 2C: CUED Part IA Flood Warning System ***")
     run()

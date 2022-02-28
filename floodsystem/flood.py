@@ -18,3 +18,15 @@ def stations_level_over_threshold(stations, tol):
     over_threshold = sorted_by_key(over_threshold, 1, True)
 
     return over_threshold
+
+def stations_highest_rel_level(stations, N):
+    '''Returns a list of the N stations whos currnet water level is the highest relative to their typical range'''
+
+    level = stations_level_over_threshold(stations, -1111111)
+    level = level[0:N]
+
+    highest =[]
+    for i in level:
+        highest.append(i[0])
+
+    return highest
