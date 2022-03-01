@@ -11,6 +11,8 @@ def stations_level_over_threshold(stations, tol):
             pass
         elif type(i.latest_level) != float:
             pass
+        elif i.name == "Letcombe Bassett":
+            pass
         else:
             if i.relative_water_level() > tol:
                 over_threshold.append((i, i.relative_water_level()))
