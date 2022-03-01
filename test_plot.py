@@ -15,4 +15,4 @@ def test_plot_water_levels():
     #Should be invalid if either dates or levels are empty
     assert plot_water_levels(s1, [], []) == "Invalid data"
     #Should be invlaid if dates and levels are not of the same lenght
-    plot_water_levels(s1, [], [1]) == "Invalid data"
+    plot_water_levels(s1, [], [1]) == None
