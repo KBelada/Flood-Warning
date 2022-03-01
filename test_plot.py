@@ -13,6 +13,6 @@ def test_plot_water_levels():
     s1 = MonitoringStation(s_id1, m_id1, label1, coord1, trange1, river1, town1)
 
     #Should be invalid if either dates or levels are empty
-    assert plot_water_levels(s1, [], []) == "Invalid data"
+    assert plot_water_levels(s1, [], []) == None
     #Should be invlaid if dates and levels are not of the same lenght
-    plot_water_levels(s1, [], [1]) == None
+    assert plot_water_levels(s1, [], [1]) == None
