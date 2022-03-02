@@ -1,5 +1,5 @@
 from floodsystem.stationdata import build_station_list, update_water_levels
-from floodsystem.analysis import risk_level_towns
+from floodsystem.analysis import risk_towns
 # 2G takes a long time to run, demonstration of outputs can be viewed quickly
 # on Github
 
@@ -7,7 +7,7 @@ def run():
     stations = build_station_list()
     update_water_levels(stations)
 
-    severe, high, moderate, low, no = risk_level_towns(stations)
+    severe, high, moderate, low, no = risk_towns(stations)
     print("Severe: ", severe)
     print("High: ", high)
     print("Moderate: ", moderate)

@@ -85,8 +85,7 @@ def changing_level(stations):
                 continue
             else:
                 if len(levels) > 1:
-                    for k in levels:
-                        if type(k) == float:
+                        if type(levels[0]) == float and type(levels[-1]) == float:
                             level_diff = levels[0] - levels[-1]
                             typical_range_diff = n.typical_range[1] - n.typical_range[0]
                             if level_diff > 0.5*typical_range_diff:
@@ -123,23 +122,29 @@ def risk_towns(stations):
     low_towns = []
     no_towns = []
 
+    for i in stations:
+        if i.town == None:
+            no_towns.append(i.town)
+
     for i in severe:
-        severe_towns.append(i.town)
+        if i.town not in no_towns:
+            severe_towns.append(i.town)
     
     for i in high:
-        if i.town not in severe_towns:
+        if i.town not in severe_towns and i.town not in no_towns:
             high_towns.append(i.town)
     
     for i in moderate:
-        if i.town not in severe_towns and i.town not in high_towns:
+        if i.town not in severe_towns and i.town not in high_towns and i.town not in no_towns:
             moderate_towns.append(i.town)
     
     for i in low:
-        if i.town not in severe_towns and i.town not in high_towns and i.town not in moderate_towns:
+        if i.town not in severe_towns and i.town not in high_towns and i.town not in moderate_towns and i.town not in no_towns:
             low_towns.append(i.town)
 
     for i in no:
-        no_towns.append(i.town)
+        if i.town not in no_towns:
+            no_towns.append(i.town)
 
     for i in stations:
         if i.town not in severe_towns and i.town not in high_towns and i.town not in moderate_towns and i.town not in low_towns and i.town not in no_towns:
